@@ -7,9 +7,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{680A67A4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EB038316-3143-4397-BC80-888C9E522605}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Domain.Tests.Unit", "ToDoList.Domain.Tests.Unit\ToDoList.Domain.Tests.Unit.csproj", "{87908845-6F79-4856-AC13-B736C6055557}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToDoList.Domain", "ToDoList.Domain\ToDoList.Domain.csproj", "{B17230FE-0980-48CB-BF59-148945586088}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87908845-6F79-4856-AC13-B736C6055557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87908845-6F79-4856-AC13-B736C6055557}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87908845-6F79-4856-AC13-B736C6055557}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87908845-6F79-4856-AC13-B736C6055557}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B17230FE-0980-48CB-BF59-148945586088}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B17230FE-0980-48CB-BF59-148945586088}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B17230FE-0980-48CB-BF59-148945586088}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B17230FE-0980-48CB-BF59-148945586088}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{87908845-6F79-4856-AC13-B736C6055557} = {680A67A4-D710-4E7B-BC18-70BBCAE45BFD}
+		{B17230FE-0980-48CB-BF59-148945586088} = {EB038316-3143-4397-BC80-888C9E522605}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4A5ECA31-CB3A-4D31-8ED6-1C1CD6C102BF}
