@@ -1,4 +1,4 @@
-﻿namespace ToDoList.Domain.Tests.Unit;
+﻿namespace ToDoList.Domain.Tests.Unit.Builders;
 
 public class NoteBuilder
 {

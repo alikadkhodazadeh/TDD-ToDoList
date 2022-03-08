@@ -6,11 +6,12 @@ public class NoteTests
     public void Constructor_Should_Construct_Note_Property()
     {
         // Arrange
-        const string? title = "Note-1";
-        const string? description = "Test-1";
+        var noteBuilder = new NoteBuilder();
+        const string title = "Note-1";
+        const string description = "Test-1";
 
         // Act
-        var note = new NoteBuilder().WithTitle(title).WithDescription(description).Build();
+        var note = noteBuilder.WithTitle(title).WithDescription(description).Build();
 
         // Assert
         note.Should().NotBeNull();
@@ -23,10 +24,11 @@ public class NoteTests
     public void Constructor_Should_Throw_Exception_When_Title_Is_Not_Provided()
     {
         // Arrange
-        const string? title = "";
+        var noteBuilder = new NoteBuilder();
+        const string title = "";
 
         // Act
-        Action note = () => new NoteBuilder().WithTitle(title).Build();
+        Action note = () => noteBuilder.WithTitle(title).Build();
 
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
@@ -36,10 +38,11 @@ public class NoteTests
     public void Constructor_Should_Throw_Exception_When_Description_Is_Not_Provided()
     {
         // Arrange
-        const string? description = "";
+        var noteBuilder = new NoteBuilder();
+        const string description = "";
 
         // Act
-        Action note = () => new NoteBuilder().WithTitle(description).Build();
+        Action note = () => noteBuilder.WithTitle(description).Build();
 
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
