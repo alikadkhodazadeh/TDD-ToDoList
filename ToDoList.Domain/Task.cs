@@ -22,6 +22,10 @@ public class Task
     {
         IsDone = false;
     }
+    public void ChangeState()
+    {
+        IsDone = !IsDone;
+    }
     public void TitleValidator()
     {
         if (string.IsNullOrEmpty(Title))

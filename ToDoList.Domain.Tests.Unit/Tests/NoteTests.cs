@@ -1,6 +1,6 @@
 namespace ToDoList.Domain.Tests.Unit;
 
-public partial class NoteTests
+public class NoteTests
 {
     [Fact]
     public void Constructor_Should_Construct_Note_Property()
@@ -16,7 +16,7 @@ public partial class NoteTests
         note.Should().NotBeNull();
         note.Title.Should().Be(title);
         note.Description.Should().Be(description);
-        note.Tasks
+        //note.Tasks
     }
 
     [Fact]
