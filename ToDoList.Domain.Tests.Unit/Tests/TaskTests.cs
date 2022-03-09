@@ -2,15 +2,20 @@
 
 public class TaskTests
 {
+    private readonly TaskBuilder _taskBuilder;
+    public TaskTests()
+    {
+        _taskBuilder = new TaskBuilder();
+    }
+
     [Fact]
     public void Counstructor_Should_Construct_Task_Property()
     {
         // Arrange -> Setup
-        var taskBuilder = new TaskBuilder();
         const string title = "Unit Testing";
 
         // Act -> Exercise
-        var task = taskBuilder.WithTitle(title).Build();
+        var task = _taskBuilder.WithTitle(title).Build();
 
         // Assert -> Verify
         task.Title.Should().Be(title);
@@ -21,10 +26,10 @@ public class TaskTests
     public void Constructor_Should_Throw_Exception_When_Title_Is_Not_Provided()
     {
         // Arrange -> Setup
-        var taskBuilder = new TaskBuilder();
+        const string title = "";
 
         // Act -> Exercise
-        Action task = () => taskBuilder.WithTitle(null).Build();
+        Action task = () => _taskBuilder.WithTitle(title).Build();
 
         // Assert -> Verify
         task.Should().ThrowExactly<InvalidOperationException>();
@@ -34,8 +39,7 @@ public class TaskTests
     public void Should_Return_IsDone_True()
     {
         // Arrange -> Setup
-        var taskBuilder = new TaskBuilder();
-        var task = taskBuilder.Build();
+        var task = _taskBuilder.Build();
 
         // Act -> Exercise
         task.Done();
@@ -48,8 +52,7 @@ public class TaskTests
     public void Should_Change_State_IsDone_Property()
     {
         // Arrange -> Setup
-        var taskBuilder = new TaskBuilder();
-        var task = taskBuilder.Build(); // default false
+        var task = _taskBuilder.Build(); // default false
 
         // Act -> Exercise
         task.ChangeState();
