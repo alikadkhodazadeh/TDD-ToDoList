@@ -4,6 +4,7 @@ public class Task
 {
     public Task(string? title)
     {
+        Id = Guid.NewGuid();
         Title = title;
 
         Undone();

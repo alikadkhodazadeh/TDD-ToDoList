@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace ToDoList.Domain.Tests.Unit;
 
 public class NoteTests
@@ -47,7 +49,7 @@ public class NoteTests
         const string description = "";
 
         // Act
-        Action note = () => _noteBuilder.WithTitle(description).Build();
+        Action note = () => _noteBuilder.WithDescription(description).Build();
 
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
@@ -65,5 +67,20 @@ public class NoteTests
 
         // Assert
         note.Tasks.Should().Contain(task);
+    }
+
+    [Fact]
+    public void Should_Change_State_The_Task()
+    {
+        // Arrange
+        var note = _noteBuilder.Build();
+        var task = _taskBuilder.Build();
+
+        // Act
+        note.AddTask(task); // default false
+        note.ChangeStateTask(task.Id);
+
+        // Assert
+        note.Tasks?.SingleOrDefault(t => t.Id.Equals(task.Id))?.IsDone.Should().BeTrue();
     }
 }
