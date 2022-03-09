@@ -17,7 +17,7 @@ public class NoteTests
         note.Should().NotBeNull();
         note.Title.Should().Be(title);
         note.Description.Should().Be(description);
-        //note.Tasks
+        note.Tasks.Should().BeEmpty();
     }
 
     [Fact]
