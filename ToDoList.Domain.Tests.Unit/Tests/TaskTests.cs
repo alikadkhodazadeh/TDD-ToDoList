@@ -31,7 +31,7 @@ public class TaskTests
     }
 
     [Fact]
-    public void Should_Return_Is_Done_True()
+    public void Should_Return_IsDone_True()
     {
         // Arrange -> Setup
         var taskBuilder = new TaskBuilder();
@@ -39,6 +39,20 @@ public class TaskTests
 
         // Act -> Exercise
         task.Done();
+
+        // Assert -> Verify
+        task.IsDone.Should().BeTrue();
+    }
+
+    [Fact]
+    public void Should_Change_State_IsDone_Property()
+    {
+        // Arrange -> Setup
+        var taskBuilder = new TaskBuilder();
+        var task = taskBuilder.Build(); // default false
+
+        // Act -> Exercise
+        task.ChangeState();
 
         // Assert -> Verify
         task.IsDone.Should().BeTrue();
