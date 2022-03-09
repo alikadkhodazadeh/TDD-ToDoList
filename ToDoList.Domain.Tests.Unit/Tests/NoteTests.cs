@@ -2,16 +2,23 @@ namespace ToDoList.Domain.Tests.Unit;
 
 public class NoteTests
 {
+    private readonly NoteBuilder _noteBuilder;
+    private readonly TaskBuilder _taskBuilder;
+    public NoteTests()
+    {
+        _noteBuilder = new NoteBuilder();
+        _taskBuilder = new TaskBuilder();
+    }
+
     [Fact]
     public void Constructor_Should_Construct_Note_Property()
     {
         // Arrange
-        var noteBuilder = new NoteBuilder();
         const string title = "Note-1";
         const string description = "Test-1";
 
         // Act
-        var note = noteBuilder.WithTitle(title).WithDescription(description).Build();
+        var note = _noteBuilder.WithTitle(title).WithDescription(description).Build();
 
         // Assert
         note.Should().NotBeNull();
@@ -24,11 +31,10 @@ public class NoteTests
     public void Constructor_Should_Throw_Exception_When_Title_Is_Not_Provided()
     {
         // Arrange
-        var noteBuilder = new NoteBuilder();
         const string title = "";
 
         // Act
-        Action note = () => noteBuilder.WithTitle(title).Build();
+        Action note = () => _noteBuilder.WithTitle(title).Build();
 
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
@@ -38,11 +44,10 @@ public class NoteTests
     public void Constructor_Should_Throw_Exception_When_Description_Is_Not_Provided()
     {
         // Arrange
-        var noteBuilder = new NoteBuilder();
         const string description = "";
 
         // Act
-        Action note = () => noteBuilder.WithTitle(description).Build();
+        Action note = () => _noteBuilder.WithTitle(description).Build();
 
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
@@ -52,10 +57,8 @@ public class NoteTests
     public void Should_Added_Task()
     {
         // Arrange
-        var noteBuilder = new NoteBuilder();
-        var taskBuilder = new TaskBuilder();
-        var note = noteBuilder.Build();
-        var task = taskBuilder.Build();
+        var note = _noteBuilder.Build();
+        var task = _taskBuilder.Build();
 
         // Act
         note.AddTask(task);
