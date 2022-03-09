@@ -1,5 +1,3 @@
-using System.Linq;
-
 namespace ToDoList.Domain.Tests.Unit;
 
 public class NoteTests
