@@ -47,4 +47,20 @@ public class NoteTests
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
     }
+
+    [Fact]
+    public void Should_Added_Task()
+    {
+        // Arrange
+        var noteBuilder = new NoteBuilder();
+        var taskBuilder = new TaskBuilder();
+        var note = noteBuilder.Build();
+        var task = taskBuilder.Build();
+
+        // Act
+        note.AddTask(task);
+
+        // Assert
+        note.Tasks.Should().Contain(task);
+    }
 }
