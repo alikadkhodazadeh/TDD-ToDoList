@@ -83,6 +83,19 @@ public class NoteTests
     }
 
     [Fact]
+    public void Should_Throw_InvalidOperationException_ChangeState_Method()
+    {
+        // Arrange
+        var note = _noteBuilder.Build();
+
+        // Act
+        Action changeStateTask = () => note.ChangeStateTask(Guid.Empty);
+
+        // Assert
+        changeStateTask.Should().ThrowExactly<InvalidOperationException>();
+    }
+
+    [Fact]
     public void Should_Return_ToString_Method_Equal_To_Title()
     {
         // Arrange
