@@ -45,4 +45,19 @@ public class NoteRepositoryTests
         // Assert
         actual.Should().Be(note);
     }
+
+    [Fact]
+    public void Should_Return_Null_When_Id_Is_Null()
+    {
+        // Arrange
+        var noteBuilder = new NoteBuilder();
+        var note = noteBuilder.Build();
+
+        // Act
+        _noteRepository.Create(note);
+        var actual = _noteRepository.GetById(Guid.Empty);
+
+        // Assert
+        actual.Should().BeNull();
+    }
 }
