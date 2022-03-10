@@ -1,11 +1,13 @@
 ﻿namespace ToDoList.Domain.Tests.Unit;
 
-public class TaskTests
+public class TaskTests : IClassFixture<IdentifierFixture>
 {
     private readonly TaskBuilder _taskBuilder;
-    public TaskTests()
+    private readonly IdentifierFixture _identifierFixture;
+    public TaskTests(IdentifierFixture identifierFixture)
     {
         _taskBuilder = new TaskBuilder();
+        _identifierFixture = identifierFixture;
     }
 
     [Fact]
