@@ -81,4 +81,17 @@ public class NoteTests
         // Assert
         note.Tasks?.SingleOrDefault(t => t.Id.Equals(task.Id))?.IsDone.Should().BeTrue();
     }
+
+    [Fact]
+    public void Should_Return_ToString_Method_Equal_To_Title()
+    {
+        // Arrange
+        var note = _noteBuilder.Build();
+
+        // Act
+        var result = note.ToString();
+
+        // Assert
+        result.Should().Be(note.Title);
+    }
 }
