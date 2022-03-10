@@ -15,6 +15,9 @@ public class Task
     public string Title { get; private set; }
     public bool IsDone { get; private set; }
 
+    public Guid? NoteId { get; set; }
+    public Note? Note { get; set; }
+
     public void Done()
     {
         IsDone = true;

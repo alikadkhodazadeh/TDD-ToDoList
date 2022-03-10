@@ -2,7 +2,12 @@
 
 public class Note
 {
-    public Note(string title, string description)
+    public Note()
+    {
+
+    }
+
+    public Note(string title, string description) :this()
     {
         Id = Guid.NewGuid();
         Title = title;
@@ -16,7 +21,7 @@ public class Note
     public Guid Id { get; private set; }
     public string Title { get; private set; }
     public string Description { get; private set; }
-    public IList<Task> Tasks { get; private set; }
+    public ICollection<Task> Tasks { get; set; }
 
     public void TitleValidator()
     {

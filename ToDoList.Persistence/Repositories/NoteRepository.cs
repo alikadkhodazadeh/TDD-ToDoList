@@ -1,5 +1,16 @@
 ﻿namespace ToDoList.Persistence.Repositories;
 
-internal class NoteRepository : INoteRepository
+internal sealed class NoteRepository : INoteRepository
 {
+    private readonly Context _context;
+
+    public NoteRepository(Context context)
+    {
+        _context = context;
+    }
+
+    public List<Note> GetAll()
+    {
+        return _context.Notes.ToList();
+    }
 }
