@@ -13,7 +13,7 @@ public class Note
         Tasks = new List<Task>();
     }
 
-    public Guid Id { get; private init; }
+    public Guid Id { get; private set; }
     public string Title { get; private set; }
     public string Description { get; private set; }
     public IList<Task> Tasks { get; private set; }
@@ -27,6 +27,10 @@ public class Note
     {
         if (string.IsNullOrEmpty(Description))
             throw new InvalidOperationException();
+    }
+    public void ChangeId(Guid id)
+    {
+        Id = id;
     }
     public void AddTask(Task task)
     {
@@ -52,7 +56,7 @@ public class Note
 
     public override bool Equals(object? obj)
     {
-        if(!(obj is Note note))
+        if (!(obj is Note note))
             return false;
 
         return Id == note.Id;

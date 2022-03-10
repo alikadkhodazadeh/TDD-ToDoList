@@ -11,7 +11,7 @@ public class Task
         TitleValidator();
     }
 
-    public Guid Id { get; private init; }
+    public Guid Id { get; private set; }
     public string Title { get; private set; }
     public bool IsDone { get; private set; }
 
@@ -26,6 +26,10 @@ public class Task
     public void ChangeState()
     {
         IsDone = !IsDone;
+    }
+    public void ChangeId(Guid id)
+    {
+        Id = id;
     }
     public void TitleValidator()
     {
