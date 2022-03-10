@@ -74,4 +74,24 @@ public class NoteRepositoryTests
         // Assert
         _noteRepository.Notes.Should().NotContain(note);
     }
+
+    [Fact]
+    public void Should_Update_Note()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        var note = _noteBuilder.WithId(id).Build();
+        var oldNote = _noteBuilder.WithId(id).Build();
+        var noteUpdate = _noteBuilder.WithId(id).WithTitle("Web API Course").WithDescription("Description ...").Build();
+
+        // Act
+        _noteRepository.Create(note);
+        _noteRepository.Update(noteUpdate);
+        var actual = _noteRepository.GetById(id);
+        
+        // Assert
+        actual?.Id.Should().Be(oldNote.Id);
+        actual?.Title.Should().NotBe(oldNote.Title);
+        actual?.Description.Should().NotBe(oldNote.Description);
+    }
 }

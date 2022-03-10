@@ -1,6 +1,4 @@
-﻿using ToDoList.Domain.Tests.Unit.Builders;
-
-namespace ToDoList.Persistence.Repositories;
+﻿namespace ToDoList.Persistence.Repositories;
 
 internal class NoteRepository : INoteRepository
 {
@@ -27,5 +25,11 @@ internal class NoteRepository : INoteRepository
     public Note? GetById(Guid id)
     {
         return Notes.SingleOrDefault(n => n.Id.Equals(id));
+    }
+
+    public void Update(Note note)
+    {
+        var result = Notes.Single(n=>n.Equals(note));
+        result.Edit(note.Title, note.Description);
     }
 }

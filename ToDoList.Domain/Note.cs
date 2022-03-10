@@ -37,6 +37,11 @@ public class Note
         task.TitleValidator();
         Tasks.Add(task);
     }
+    public void Edit(string title, string description)
+    {
+        Title = title;
+        Description = description;
+    }
     public void ChangeStateTask(Guid id)
     {
         if (id == Guid.Empty)
