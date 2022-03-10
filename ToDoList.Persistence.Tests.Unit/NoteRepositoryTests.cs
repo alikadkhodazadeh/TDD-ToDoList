@@ -1,13 +1,15 @@
-using Xunit;
+using ToDoList.Persistence.Repositories;
 
-namespace ToDoList.Persistence.Tests.Unit
+namespace ToDoList.Persistence.Tests.Unit;
+
+public class NoteRepositoryTests
 {
-    public class NoteRepositoryTests
+    [Fact]
+    public void Should_Add_New_Note()
     {
-        [Fact]
-        public void Should_Add_New_Note()
-        {
-            // Arrange
-        }
+        // Arrange
+        var noteBuilder = new NoteBuilder();
+        var note = noteBuilder.Build();
+        var noteRepository = new NoteRepositoryFactory();
     }
 }
