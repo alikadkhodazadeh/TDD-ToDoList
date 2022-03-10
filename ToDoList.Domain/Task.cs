@@ -2,7 +2,7 @@
 
 public class Task
 {
-    public Task(string? title)
+    public Task(string title)
     {
         Id = Guid.NewGuid();
         Title = title;
@@ -12,7 +12,7 @@ public class Task
     }
 
     public Guid Id { get; private init; }
-    public string? Title { get; private set; }
+    public string Title { get; private set; }
     public bool IsDone { get; private set; }
 
     public void Done()
@@ -32,7 +32,7 @@ public class Task
         if (string.IsNullOrEmpty(Title))
             throw new InvalidOperationException();
     }
-    public override string? ToString()
+    public override string ToString()
     {
         return Title;
     }

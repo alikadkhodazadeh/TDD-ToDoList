@@ -106,7 +106,7 @@ public class NoteTests
         Action changeStateTask = () => note.ChangeStateTask(id);
 
         // Assert
-        note.Tasks?.SingleOrDefault(t => t.Id.Equals(id))?.IsDone.Should().BeTrue();
+        changeStateTask.Should().ThrowExactly<ArgumentNullException>();
     }
 
     [Fact]
