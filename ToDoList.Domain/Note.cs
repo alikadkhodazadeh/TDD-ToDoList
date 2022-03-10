@@ -40,7 +40,7 @@ public class Note
 
         var task = Tasks.SingleOrDefault(t => t.Id.Equals(id));
 
-        if(task is null)
+        if (task is null)
             throw new ArgumentNullException(nameof(task));
 
         task.ChangeState();
@@ -48,5 +48,13 @@ public class Note
     public override string ToString()
     {
         return Title;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if(!(obj is Note note))
+            return false;
+
+        return Id == note.Id;
     }
 }

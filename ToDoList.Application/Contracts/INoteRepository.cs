@@ -1,9 +1,7 @@
-﻿using ToDoList.Domain;
-
-namespace ToDoList.Application;
+﻿namespace ToDoList.Application;
 
 public interface INoteRepository
 {
-    IList<Note> Notes { get; }
+    List<Note> Notes { get; }
     void Create(Note note);
 }

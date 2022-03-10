@@ -10,6 +10,12 @@ public class NoteRepositoryTests
         // Arrange
         var noteBuilder = new NoteBuilder();
         var note = noteBuilder.Build();
-        var noteRepository = new NoteRepositoryFactory();
+        var noteRepository = new NoteRepositoryFactory().Create();
+
+        // Act
+        noteRepository.Create(note);
+
+        // Assert
+        noteRepository.Notes.Should().Contain(note);
     }
 }

@@ -1,6 +1,4 @@
-﻿using ToDoList.Application;
-
-namespace ToDoList.Persistence.Repositories;
+﻿namespace ToDoList.Persistence.Repositories;
 
 public class NoteRepositoryFactory : IRepositoryFactory<INoteRepository>
 {
