@@ -1,13 +1,13 @@
 namespace ToDoList.Domain.Tests.Unit;
 
-public class NoteTests
+public class NoteTests : IClassFixture<NoteFixture>
 {
-    private readonly NoteBuilder _noteBuilder;
-    private readonly TaskBuilder _taskBuilder;
-    public NoteTests()
+    private readonly NoteBuilder? _noteBuilder;
+    private readonly TaskBuilder? _taskBuilder;
+    public NoteTests(NoteFixture noteFixture)
     {
-        _noteBuilder = new NoteBuilder();
-        _taskBuilder = new TaskBuilder();
+        _noteBuilder = noteFixture.NoteBuilder;
+        _taskBuilder = noteFixture.TaskBuilder;
     }
 
     [Fact]
@@ -18,7 +18,7 @@ public class NoteTests
         const string description = "Test-1";
 
         // Act
-        var note = _noteBuilder.WithTitle(title).WithDescription(description).Build();
+        var note = _noteBuilder?.WithTitle(title).WithDescription(description).Build();
 
         // Assert
         note.Should().NotBeNull();
@@ -34,7 +34,7 @@ public class NoteTests
         const string title = "";
 
         // Act
-        Action note = () => _noteBuilder.WithTitle(title).Build();
+        Action note = () => _noteBuilder?.WithTitle(title).Build();
 
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
@@ -47,7 +47,7 @@ public class NoteTests
         const string description = "";
 
         // Act
-        Action note = () => _noteBuilder.WithDescription(description).Build();
+        Action note = () => _noteBuilder?.WithDescription(description).Build();
 
         // Assert
         note.Should().ThrowExactly<InvalidOperationException>();
@@ -57,8 +57,8 @@ public class NoteTests
     public void Should_Added_Task()
     {
         // Arrange
-        var note = _noteBuilder.Build();
-        var task = _taskBuilder.Build();
+        var note = _noteBuilder?.Build();
+        var task = _taskBuilder?.Build();
 
         // Act
         note.AddTask(task);
@@ -71,8 +71,8 @@ public class NoteTests
     public void Should_Change_State_The_Task()
     {
         // Arrange
-        var note = _noteBuilder.Build();
-        var task = _taskBuilder.Build();
+        var note = _noteBuilder?.Build();
+        var task = _taskBuilder?.Build();
 
         // Act
         note.AddTask(task); // default false
@@ -86,10 +86,10 @@ public class NoteTests
     public void Should_Throw_InvalidOperationException_ChangeState_Method()
     {
         // Arrange
-        var note = _noteBuilder.Build();
+        var note = _noteBuilder?.Build();
 
         // Act
-        Action changeStateTask = () => note.ChangeStateTask(Guid.Empty);
+        Action changeStateTask = () => note?.ChangeStateTask(Guid.Empty);
 
         // Assert
         changeStateTask.Should().ThrowExactly<InvalidOperationException>();
@@ -99,10 +99,10 @@ public class NoteTests
     public void Should_Return_ToString_Method_Equal_To_Title()
     {
         // Arrange
-        var note = _noteBuilder.Build();
+        var note = _noteBuilder?.Build();
 
         // Act
-        var result = note.ToString();
+        var result = note?.ToString();
 
         // Assert
         result.Should().Be(note.Title);
