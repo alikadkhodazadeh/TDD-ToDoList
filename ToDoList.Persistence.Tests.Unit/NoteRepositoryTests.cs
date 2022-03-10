@@ -18,17 +18,4 @@ public class NoteRepositoryTests
         // Assert
         noteRepository.Notes.Should().Contain(note);
     }
-
-    [Fact]
-    public void Equality_Should_Be_On_Id()
-    {
-        // Arrange
-        var noteBuilder = new NoteBuilder();
-        var id = Guid.NewGuid();
-        var note1 = noteBuilder.WithId(id).Build();
-        var note2 = noteBuilder.WithId(id).WithTitle("Test").Build();
-
-        // Assert
-        note1.Should().Be(note2);
-    }
 }
