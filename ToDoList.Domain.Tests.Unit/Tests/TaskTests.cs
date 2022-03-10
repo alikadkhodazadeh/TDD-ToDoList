@@ -62,4 +62,17 @@ public class TaskTests : IClassFixture<IdentifierFixture>
         // Assert -> Verify
         task.IsDone.Should().BeTrue();
     }
+
+    [Fact]
+    public void Should_Return_ToString_Method_Equal_To_Title()
+    {
+        // Arrange -> Setup
+        var task = _taskBuilder.Build();
+
+        // Act -> Exercise
+        var result = task.ToString();
+
+        // Assert -> Verify
+        result.Should().Be(task.Title);
+    }
 }
