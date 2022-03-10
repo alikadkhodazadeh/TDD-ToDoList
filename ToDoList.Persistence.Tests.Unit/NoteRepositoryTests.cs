@@ -3,17 +3,18 @@ namespace ToDoList.Persistence.Tests.Unit;
 public class NoteRepositoryTests
 {
     private readonly INoteRepository _noteRepository;
+    private readonly NoteBuilder _noteBuilder;
     public NoteRepositoryTests()
     {
         _noteRepository = new NoteRepositoryFactory().Create();
+        _noteBuilder = new NoteBuilder();
     }
 
     [Fact]
     public void Should_Add_New_Note()
     {
         // Arrange
-        var noteBuilder = new NoteBuilder();
-        var note = noteBuilder.Build();
+        var note = _noteBuilder.Build();
 
         // Act
         _noteRepository.Create(note);
@@ -35,8 +36,7 @@ public class NoteRepositoryTests
     public void Should_Return_Get_Note_By_Id()
     {
         // Arrange
-        var noteBuilder = new NoteBuilder();
-        var note = noteBuilder.Build();
+        var note = _noteBuilder.Build();
 
         // Act
         _noteRepository.Create(note);
@@ -50,8 +50,7 @@ public class NoteRepositoryTests
     public void Should_Return_Null_When_Id_Is_Null()
     {
         // Arrange
-        var noteBuilder = new NoteBuilder();
-        var note = noteBuilder.Build();
+        var note = _noteBuilder.Build();
 
         // Act
         _noteRepository.Create(note);
@@ -59,5 +58,20 @@ public class NoteRepositoryTests
 
         // Assert
         actual.Should().BeNull();
+    }
+
+    [Fact]
+    public void Should_Delete_Note()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+        var note = _noteBuilder.WithId(id).Build();
+
+        // Act
+        _noteRepository.Create(note);
+        _noteRepository.Delete(id);
+
+        // Assert
+        _noteRepository.Notes.Should().NotContain(note);
     }
 }
