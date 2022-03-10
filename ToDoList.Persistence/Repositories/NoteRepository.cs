@@ -13,4 +13,9 @@ internal class NoteRepository : INoteRepository
     {
         Notes.Add(note);
     }
+
+    public Note? GetById(Guid id)
+    {
+        return Notes.SingleOrDefault(n => n.Id.Equals(id));
+    }
 }
