@@ -1,6 +1,7 @@
 ﻿namespace ToDoList.Application;
 
-public interface INoteRepository
+public interface INoteRepository : IDisposable
 {
     List<Note> GetAll();
+    void Create(Note note);
 }

@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ToDoList.Domain.Tests.Unit\ToDoList.Domain.Tests.Unit.csproj" />
     <ProjectReference Include="..\ToDoList.Persistence\ToDoList.Persistence.csproj" />
   </ItemGroup>
 

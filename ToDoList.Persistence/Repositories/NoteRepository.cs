@@ -9,6 +9,17 @@ internal sealed class NoteRepository : INoteRepository
         _context = context;
     }
 
+    public void Create(Note note)
+    {
+        _context.Notes.Add(note);
+        _context.SaveChanges();
+    }
+
+    public void Dispose()
+    {
+        _context.Dispose();
+    }
+
     public List<Note> GetAll()
     {
         return _context.Notes.ToList();
