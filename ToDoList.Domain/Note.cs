@@ -1,6 +1,6 @@
 ﻿namespace ToDoList.Domain;
 
-public class Note
+public sealed class Note
 {
     public Note()
     {

@@ -1,7 +1,12 @@
-﻿namespace ToDoList.Application
+﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+
+namespace ToDoList.Application
 {
     public interface IContext
     {
+        DatabaseFacade Database { get; }
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);
 

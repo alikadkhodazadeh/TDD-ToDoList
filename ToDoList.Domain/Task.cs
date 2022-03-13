@@ -1,6 +1,6 @@
 ﻿namespace ToDoList.Domain;
 
-public class Task
+public sealed class Task
 {
     public Task(string title)
     {
