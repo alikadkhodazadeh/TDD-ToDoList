@@ -26,7 +26,6 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
     {
         // Arrange
         var note = new NoteBuilder().WithTitle("Create Test").WithDescription("Test Test Test").Build();
-        using var scope = new TransactionScope();
 
         // Act
         _noteRepository.Create(note);
