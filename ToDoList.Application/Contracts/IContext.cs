@@ -1,15 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+﻿namespace ToDoList.Application;
 
-namespace ToDoList.Application
+public interface IContext
 {
-    public interface IContext
-    {
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
+    DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
-        int SaveChanges();
-        int SaveChanges(bool acceptAllChangesOnSuccess);
+    int SaveChanges();
+    int SaveChanges(bool acceptAllChangesOnSuccess);
 
-        Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
-    }
+    Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken());
 }

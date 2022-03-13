@@ -30,4 +30,9 @@ internal sealed class NoteRepository : INoteRepository
     {
         _context.SaveChanges();
     }
+
+    public Note? GetById(Guid id)
+    {
+        return _context.Notes.SingleOrDefault(x => x.Id.Equals(id));
+    }
 }
