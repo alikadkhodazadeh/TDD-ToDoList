@@ -9,10 +9,16 @@ internal sealed class NoteRepository : INoteRepository
         _context = context;
     }
 
-    public void Create(Note note)
+    public void Create(Note note, bool save = true)
     {
         _context.Notes.Add(note);
-        _context.SaveChanges();
+        if (save)
+            _context.SaveChanges();
+    }
+
+    public List<Note> GetAll()
+    {
+        return _context.Notes.ToList();
     }
 
     public void Dispose()
@@ -20,8 +26,8 @@ internal sealed class NoteRepository : INoteRepository
         _context.Dispose();
     }
 
-    public List<Note> GetAll()
+    public void Save()
     {
-        return _context.Notes.ToList();
+        _context.SaveChanges();
     }
 }

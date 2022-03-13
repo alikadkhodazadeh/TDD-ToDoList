@@ -18,7 +18,7 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
         var notes = _noteRepository.GetAll();
 
         // Assert
-        notes.Should().HaveCountGreaterThanOrEqualTo(1);
+        notes.Should().HaveCountGreaterThanOrEqualTo(3);
     }
 
     [Fact]

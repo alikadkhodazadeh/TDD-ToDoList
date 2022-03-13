@@ -4,7 +4,6 @@ namespace ToDoList.Application
 {
     public interface IContext
     {
-        DatabaseFacade Database { get; }
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         int SaveChanges();
