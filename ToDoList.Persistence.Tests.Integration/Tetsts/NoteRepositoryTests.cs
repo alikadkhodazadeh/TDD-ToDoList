@@ -34,4 +34,19 @@ public class NoteRepositoryTests : IClassFixture<NoteFixture>
         //Assert
         _noteRepository.GetAll().Should().Contain(note);
     }
+
+    [Fact]
+    public void Should_Get_Note_By_Id()
+    {
+        // Arrange
+        var note =  _noteBuilder.WithTitle(nameof(Should_Get_Note_By_Id)).Build();
+        var id = _noteRepository.Create(note);
+
+        // Act
+        var actual = _noteRepository.GetById(id);
+
+        //Assert
+        actual.Should().Be(note);
+    }
+
 }

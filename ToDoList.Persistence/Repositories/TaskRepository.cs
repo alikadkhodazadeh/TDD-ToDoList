@@ -30,4 +30,14 @@ internal sealed class TaskRepository : ITaskRepository
     {
         _context.SaveChanges();
     }
+
+    public Domain.Task GetById(Guid id)
+    {
+        if (id == Guid.Empty)
+            throw new ArgumentNullException(nameof(id));
+        var task = _context.Tasks.Find(id);
+        if (task is null)
+            throw new ArgumentNullException(nameof(task));
+        return task;
+    }
 }
