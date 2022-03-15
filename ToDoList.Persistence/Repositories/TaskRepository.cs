@@ -31,18 +31,18 @@ internal sealed class TaskRepository : ITaskRepository
         _context.SaveChanges();
     }
 
-    public Domain.Task GetById(Guid id)
+    public Domain.Task? GetById(Guid id)
     {
         if (id == Guid.Empty)
             throw new ArgumentNullException(nameof(id));
         var task = _context.Tasks.Find(id);
-        if (task is null)
-            throw new ArgumentNullException(nameof(task));
         return task;
     }
 
     public void Delete(Guid id)
     {
-        throw new NotImplementedException();
+        var task = GetById(id);
+        _context.Tasks.Remove(task);
+        Save();
     }
 }

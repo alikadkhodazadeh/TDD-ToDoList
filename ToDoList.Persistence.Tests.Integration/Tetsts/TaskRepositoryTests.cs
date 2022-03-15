@@ -59,4 +59,19 @@ public class TaskRepositoryTests : IClassFixture<TaskFixture>
         // Assert
         id.Should().NotBeEmpty();
     }
+
+    [Fact]
+    public void Should_Delete_Existing_Task()
+    {
+        // Arrange
+        var task = _taskBuilder.Build();
+        var id = _taskRepository.Create(task);
+
+        // Act
+        _taskRepository.Delete(id);
+        var actual = _taskRepository.GetById(id);
+
+        // Assert
+        actual.Should().BeNull();
+    }
 }
