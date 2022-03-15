@@ -1,6 +1,3 @@
-using System.Transactions;
-using ToDoList.Domain.Tests.Unit.Builders;
-
 namespace ToDoList.Persistence.Tests.Integration;
 
 public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
@@ -16,7 +13,7 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
     }
 
     [Fact]
-    public void Should_Return_Notes()
+    public void Should_Return_All_Notes()
     {
         // Act
         var notes = _noteRepository.GetAll();
@@ -29,7 +26,7 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
     public void Should_Create_Note()
     {
         // Arrange
-        var note = _noteBuilder.WithTitle("Create Test").WithDescription("Test Test Test").Build();
+        var note =  _noteBuilder.WithTitle(nameof(Should_Create_Note)).Build();
 
         // Act
         _noteRepository.Create(note);
@@ -42,11 +39,11 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
     public void Should_Get_Note_By_Id()
     {
         // Arrange
-        var note = _noteBuilder.WithTitle("Get By Id Test").WithDescription("Test Test Test").Build();
+        var note =  _noteBuilder.WithTitle(nameof(Should_Get_Note_By_Id)).Build();
+        var id = _noteRepository.Create(note);
 
         // Act
-        _noteRepository.Create(note);
-        var actual = _noteRepository.GetById(note.Id);
+        var actual = _noteRepository.GetById(id);
 
         //Assert
         actual.Should().Be(note);
@@ -56,12 +53,26 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
     public void Should_Return_Id_Of_The_Created_Note()
     {
         // Arrange
-        var note = _noteBuilder.Build();
+        var note = _noteBuilder.WithTitle(nameof(Should_Return_Id_Of_The_Created_Note)).Build();
 
         // Act
         var id = _noteRepository.Create(note);
 
         // Assert
         id.Should().NotBeEmpty();
+    }
+
+    [Fact]
+    public void Should_Delete_Existing_Note()
+    {
+        // Arrange
+        var note = _noteBuilder.WithTitle(nameof(Should_Delete_Existing_Note)).Build();
+        var id = _noteRepository.Create(note);
+
+        // Act
+        _noteRepository.Delete(id);
+
+        // Assert
+        _noteRepository.GetById(id).Should().BeNull();
     }
 }

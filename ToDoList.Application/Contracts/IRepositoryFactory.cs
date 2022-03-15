@@ -2,5 +2,5 @@
 
 public interface IRepositoryFactory<T>
 {
-    public T Create();
+    public T CreateRepository();
 }

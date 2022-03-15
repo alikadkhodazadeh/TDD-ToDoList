@@ -2,7 +2,7 @@
 
 public sealed class NoteRepositoryFactory : IRepositoryFactory<INoteRepository>
 {
-    public INoteRepository Create()
+    public INoteRepository CreateRepository()
     {
         return new NoteRepository(new ContextFactory().CreateDbContext());
     }

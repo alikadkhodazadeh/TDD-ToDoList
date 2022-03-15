@@ -2,8 +2,8 @@
 
 public class TaskBuilder
 {
-    private string? _title = "Mock";
-    public TaskBuilder WithTitle(string? title)
+    private string _title = "Mock";
+    public TaskBuilder WithTitle(string title)
     {
         _title = title;
         return this;

@@ -33,7 +33,7 @@ internal sealed class NoteRepository : INoteRepository
 
     public Note? GetById(Guid id)
     {
-        return _context.Notes.SingleOrDefault(x => x.Id.Equals(id));
+        return _context.Notes.Find(id);
     }
 
     public Guid Create(Note note)
@@ -41,5 +41,16 @@ internal sealed class NoteRepository : INoteRepository
         _context.Notes.Add(note);
         Save();
         return note.Id;
+    }
+
+    public void Delete(Guid id)
+    {
+        if(id == Guid.Empty)
+            throw new InvalidOperationException(nameof(id));
+        var note = _context.Notes.Find(id);
+        if (note is null)
+            throw new InvalidOperationException(nameof(note));
+        _context.Notes.Remove(note);
+        Save();
     }
 }

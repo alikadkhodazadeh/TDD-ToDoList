@@ -4,3 +4,7 @@ global using System;
 global using System.Linq;
 global using ToDoList.Application;
 global using ToDoList.Persistence.Repositories;
+global using Microsoft.EntityFrameworkCore;
+global using System.Transactions;
+global using ToDoList.Domain;
+global using ToDoList.Domain.Tests.Unit.Builders;

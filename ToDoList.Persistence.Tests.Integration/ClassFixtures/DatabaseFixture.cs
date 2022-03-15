@@ -1,15 +1,11 @@
-﻿using System.Transactions;
-using ToDoList.Domain;
-using ToDoList.Domain.Tests.Unit.Builders;
-
-namespace ToDoList.Persistence.Tests.Integration
+﻿namespace ToDoList.Persistence.Tests.Integration
 {
     public class DatabaseFixture : IDisposable
     {
         public DatabaseFixture()
         {
             Transaction = new TransactionScope();
-            var noteRepository = new NoteRepositoryFactory().Create();
+            var noteRepository = new NoteRepositoryFactory().CreateRepository();
 
             #region Data Seeding
             noteRepository.Create(new Note("Git", "Learn Git"), false);
@@ -28,8 +24,8 @@ namespace ToDoList.Persistence.Tests.Integration
 
         public void Dispose()
         {
-            NoteRepository.Dispose();
             Transaction.Dispose();
+            NoteRepository.Dispose();
         }
     }
 }
