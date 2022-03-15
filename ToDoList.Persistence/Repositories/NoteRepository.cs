@@ -9,11 +9,11 @@ internal sealed class NoteRepository : INoteRepository
         _context = context;
     }
 
-    public void Create(Note note, bool save = true)
+    public void Create(Note note, bool save)
     {
         _context.Notes.Add(note);
         if (save)
-            _context.SaveChanges();
+            Save();
     }
 
     public List<Note> GetAll()
@@ -34,5 +34,12 @@ internal sealed class NoteRepository : INoteRepository
     public Note? GetById(Guid id)
     {
         return _context.Notes.SingleOrDefault(x => x.Id.Equals(id));
+    }
+
+    public Guid Create(Note note)
+    {
+        _context.Notes.Add(note);
+        Save();
+        return note.Id;
     }
 }
