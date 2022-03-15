@@ -43,4 +43,12 @@ public sealed class Task
     {
         return Title;
     }
+
+    public override bool Equals(object? obj)
+    {
+        if (!(obj is Task note))
+            return false;
+
+        return Id == note.Id;
+    }
 }

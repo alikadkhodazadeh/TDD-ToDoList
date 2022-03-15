@@ -18,4 +18,16 @@ internal sealed class TaskRepository : ITaskRepository
     {
         _context.Dispose();
     }
+
+    public Guid Create(Domain.Task task)
+    {
+        _context.Tasks.Add(task);
+        Save();
+        return task.Id;
+    }
+
+    public void Save()
+    {
+        _context.SaveChanges();
+    }
 }
