@@ -1,11 +1,11 @@
 namespace ToDoList.Persistence.Tests.Integration;
 
-public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
+public class NoteRepositoryTests : IClassFixture<NoteFixture>
 {
     private readonly INoteRepository _noteRepository;
     private readonly NoteBuilder _noteBuilder;
     private TransactionScope _transactionScope;
-    public NoteRepositoryTests(DatabaseFixture database)
+    public NoteRepositoryTests(NoteFixture database)
     {
         _noteRepository = database.NoteRepository;
         _noteBuilder = new NoteBuilder();

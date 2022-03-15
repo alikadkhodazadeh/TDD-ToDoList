@@ -1,15 +1,18 @@
-﻿namespace ToDoList.Persistence.Tests.Integration.Tetsts;
+﻿namespace ToDoList.Persistence.Tests.Integration;
 
-public class TaskRepositoryTests
+public class TaskRepositoryTests : IClassFixture<TaskFixture>
 {
+    private readonly ITaskRepository _taskRepository;
+    public TaskRepositoryTests(TaskFixture taskFixture)
+    {
+        _taskRepository = taskFixture.TaskRepository;
+    }
+
     [Fact]
     public void Should_Return_All_Tasks()
     {
-        // Arrange
-        var taskRepository = new TaskRepositoryFactory().CreateRepository();
-
         // Act
-        var tasks = taskRepository.GetAll();
+        var tasks = _taskRepository.GetAll();
 
         // Assert
         tasks.Should().HaveCountGreaterThanOrEqualTo(1);
