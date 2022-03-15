@@ -121,34 +121,4 @@ public class NoteTests
         // Assert
         result.Should().Be(note.Title);
     }
-
-    [Fact]
-    public void Should_Be_Equal_When_Id_Is_Equal()
-    {
-        // Arrange
-        var noteBuilder = new NoteBuilder();
-        var id = Guid.NewGuid();
-        var note1 = noteBuilder.WithId(id).Build();
-        var note2 = noteBuilder.WithId(id).WithTitle("Test").Build();
-
-        // Act
-        var actual = note1.Equals(note2);
-
-        // Assert
-        actual.Should().BeTrue();
-    }
-
-    [Fact]
-    public void Should_Not_Be_Equal_When_Is_Equal()
-    {
-        // Arrange
-        var noteBuilder = new NoteBuilder();
-        var note = noteBuilder.Build();
-
-        // Act
-        var actual = note.Equals(null);
-
-        // Assert
-        actual.Should().BeFalse();
-    }
 }

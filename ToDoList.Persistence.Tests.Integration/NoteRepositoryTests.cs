@@ -7,10 +7,12 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
 {
     private readonly INoteRepository _noteRepository;
     private readonly NoteBuilder _noteBuilder;
+    private TransactionScope _transactionScope;
     public NoteRepositoryTests(DatabaseFixture database)
     {
         _noteRepository = database.NoteRepository;
         _noteBuilder = new NoteBuilder();
+        _transactionScope = database.Transaction;
     }
 
     [Fact]
@@ -20,7 +22,7 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
         var notes = _noteRepository.GetAll();
 
         // Assert
-        notes.Should().HaveCountGreaterThanOrEqualTo(3);
+        notes.Should().HaveCountGreaterThanOrEqualTo(1);
     }
 
     [Fact]
@@ -47,7 +49,6 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
         var actual = _noteRepository.GetById(note.Id);
 
         //Assert
-        actual.Should().NotBeNull();
         actual.Should().Be(note);
     }
 
@@ -61,7 +62,6 @@ public class NoteRepositoryTests : IClassFixture<DatabaseFixture>
         var id = _noteRepository.Create(note);
 
         // Assert
-        id.Should().NotBe(Guid.Empty);
         id.Should().NotBeEmpty();
     }
 }

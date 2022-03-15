@@ -23,10 +23,6 @@ public class NoteBuilder
     public Note Build()
     {
         var note = new Note(_title, _description);
-
-        if (_id != Guid.Empty)
-            note.ChangeId(_id);
-
         return note;
     }
 }

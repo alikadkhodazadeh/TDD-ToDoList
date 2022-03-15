@@ -1,14 +1,14 @@
 ﻿using System.Transactions;
 using ToDoList.Domain;
+using ToDoList.Domain.Tests.Unit.Builders;
 
 namespace ToDoList.Persistence.Tests.Integration
 {
     public class DatabaseFixture : IDisposable
     {
-        private TransactionScope _scope;
         public DatabaseFixture()
         {
-            _scope = new TransactionScope();
+            Transaction = new TransactionScope();
             var noteRepository = new NoteRepositoryFactory().Create();
 
             #region Data Seeding
@@ -19,14 +19,17 @@ namespace ToDoList.Persistence.Tests.Integration
             #endregion
 
             NoteRepository = noteRepository;
+            NoteBuilder = new NoteBuilder();
         }
 
+        public TransactionScope Transaction { get; set; }
         public INoteRepository NoteRepository { get; set; }
+        public NoteBuilder NoteBuilder { get; set; }
 
         public void Dispose()
         {
             NoteRepository.Dispose();
-            _scope.Dispose();
+            Transaction.Dispose();
         }
     }
 }

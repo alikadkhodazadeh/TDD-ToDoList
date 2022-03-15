@@ -9,7 +9,6 @@ public sealed class Note
 
     public Note(string title, string description) :this()
     {
-        Id = Guid.NewGuid();
         Title = title;
         Description = description;
 
