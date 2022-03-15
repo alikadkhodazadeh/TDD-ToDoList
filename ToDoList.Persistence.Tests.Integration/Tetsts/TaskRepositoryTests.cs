@@ -46,4 +46,17 @@ public class TaskRepositoryTests : IClassFixture<TaskFixture>
         // Assert
         actual.Should().Be(task);
     }
+
+    [Fact]
+    public void Should_Return_Id_Of_The_Created_Task()
+    {
+        // Arrange
+        var task = _taskBuilder.Build();
+
+        // Act
+        var id = _taskRepository.Create(task);
+
+        // Assert
+        id.Should().NotBeEmpty();
+    }
 }

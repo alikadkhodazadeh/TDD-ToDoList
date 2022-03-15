@@ -40,4 +40,9 @@ internal sealed class TaskRepository : ITaskRepository
             throw new ArgumentNullException(nameof(task));
         return task;
     }
+
+    public void Delete(Guid id)
+    {
+        throw new NotImplementedException();
+    }
 }
