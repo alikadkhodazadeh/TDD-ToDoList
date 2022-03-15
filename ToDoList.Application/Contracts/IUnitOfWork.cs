@@ -1,4 +1,4 @@
-﻿namespace ToDoList.Application.Contracts
+﻿namespace ToDoList.Application
 {
     public interface IUnitOfWork : IDisposable
     {

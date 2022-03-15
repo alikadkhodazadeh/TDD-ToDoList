@@ -1,6 +1,4 @@
-﻿using ToDoList.Application.Contracts;
-
-namespace ToDoList.Persistence.Repositories;
+﻿namespace ToDoList.Persistence.Repositories;
 
 internal sealed class UnitOfWork : IUnitOfWork
 {

@@ -17,7 +17,7 @@ public class TaskRepositoryTests : IClassFixture<TaskFixture>
         var tasks = _taskRepository.GetAll();
 
         // Assert
-        tasks.Should().HaveCountGreaterThanOrEqualTo(1);
+        tasks.Should().HaveCountGreaterThanOrEqualTo(3);
     }
 
     [Fact]

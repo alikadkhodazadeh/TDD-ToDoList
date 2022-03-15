@@ -4,7 +4,6 @@ public sealed class Note
 {
     public Note()
     {
-
     }
 
     public Note(string title, string description) :this()

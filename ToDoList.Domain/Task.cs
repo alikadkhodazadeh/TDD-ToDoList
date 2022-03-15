@@ -2,6 +2,9 @@
 
 public sealed class Task
 {
+    public Task()
+    {
+    }
     public Task(string title)
     {
         Id = Guid.NewGuid();

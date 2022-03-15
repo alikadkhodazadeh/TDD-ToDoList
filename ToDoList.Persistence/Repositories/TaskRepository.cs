@@ -42,9 +42,16 @@ internal sealed class TaskRepository : ITaskRepository
     public void Delete(Guid id)
     {
         var task = _context.Tasks.Find(id);
-        if(task is null)
+        if (task is null)
             throw new ArgumentNullException(nameof(id));
         _context.Tasks.Remove(task);
         Save();
+    }
+
+    public void Create(Domain.Task task, bool save)
+    {
+        _context.Tasks.Add(task);
+        if (save)
+            Save();
     }
 }
