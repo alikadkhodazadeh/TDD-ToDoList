@@ -11,7 +11,7 @@ internal sealed class TaskRepository : ITaskRepository
 
     public List<Domain.Task> GetAll()
     {
-        return _context.Tasks.ToList();
+        return _context.Tasks.AsNoTracking().ToList();
     }
 
     public void Dispose()
@@ -41,7 +41,9 @@ internal sealed class TaskRepository : ITaskRepository
 
     public void Delete(Guid id)
     {
-        var task = GetById(id);
+        var task = _context.Tasks.Find(id);
+        if(task is null)
+            throw new ArgumentNullException(nameof(id));
         _context.Tasks.Remove(task);
         Save();
     }

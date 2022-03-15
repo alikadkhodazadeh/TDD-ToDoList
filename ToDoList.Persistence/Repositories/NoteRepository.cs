@@ -18,7 +18,7 @@ internal sealed class NoteRepository : INoteRepository
 
     public List<Note> GetAll()
     {
-        return _context.Notes.ToList();
+        return _context.Notes.AsNoTracking().ToList();
     }
 
     public void Dispose()
@@ -46,10 +46,10 @@ internal sealed class NoteRepository : INoteRepository
     public void Delete(Guid id)
     {
         if(id == Guid.Empty)
-            throw new InvalidOperationException(nameof(id));
+            throw new ArgumentNullException(nameof(id));
         var note = _context.Notes.Find(id);
         if (note is null)
-            throw new InvalidOperationException(nameof(note));
+            throw new ArgumentNullException(nameof(note));
         _context.Notes.Remove(note);
         Save();
     }

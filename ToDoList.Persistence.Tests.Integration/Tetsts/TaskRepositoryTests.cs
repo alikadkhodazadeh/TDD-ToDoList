@@ -24,7 +24,7 @@ public class TaskRepositoryTests : IClassFixture<TaskFixture>
     public void Should_Create_Task()
     {
         // Arrange
-        var task = _taskBuilder.Build();
+        var task = _taskBuilder.WithTitle(nameof(Should_Create_Task)).Build();
 
         // Act
         var id = _taskRepository.Create(task);
@@ -37,7 +37,7 @@ public class TaskRepositoryTests : IClassFixture<TaskFixture>
     public void Should_Get_Task_By_Id()
     {
         // Arrange
-        var task = _taskBuilder.Build();
+        var task = _taskBuilder.WithTitle(nameof(Should_Get_Task_By_Id)).Build();
         var id = _taskRepository.Create(task);
 
         // Act
@@ -51,7 +51,7 @@ public class TaskRepositoryTests : IClassFixture<TaskFixture>
     public void Should_Return_Id_Of_The_Created_Task()
     {
         // Arrange
-        var task = _taskBuilder.Build();
+        var task = _taskBuilder.WithTitle(nameof(Should_Return_Id_Of_The_Created_Task)).Build();
 
         // Act
         var id = _taskRepository.Create(task);
@@ -64,7 +64,7 @@ public class TaskRepositoryTests : IClassFixture<TaskFixture>
     public void Should_Delete_Existing_Task()
     {
         // Arrange
-        var task = _taskBuilder.Build();
+        var task = _taskBuilder.WithTitle(nameof(Should_Delete_Existing_Task)).Build();
         var id = _taskRepository.Create(task);
 
         // Act
