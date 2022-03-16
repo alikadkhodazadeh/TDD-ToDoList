@@ -1,6 +1,6 @@
 ﻿namespace ToDoList.Persistence.Repositories;
 
-internal sealed class NoteRepository : INoteRepository
+public sealed class NoteRepository : INoteRepository
 {
     private readonly Context _context;
 
