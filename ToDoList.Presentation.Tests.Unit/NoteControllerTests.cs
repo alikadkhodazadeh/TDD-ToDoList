@@ -20,14 +20,12 @@ public class NoteControllerTests
     public void Should_Return_All_Notes()
     {
         // Arrange
-        var repository = Substitute.For<INoteRepository>();
-        var controller = new NotesController(repository);
 
         // Act
-        var notes = controller.Get();
+        var notes = _notesController.Get();
 
         // Assert
-        repository.Received().GetAll();
+        _noteRepository.Received().GetAll();
     }
 
     [Fact]
