@@ -24,8 +24,13 @@ public class NotesController : ControllerBase
     [HttpPost]
     public Guid Create(NoteDto dto) => _noteRepository.Create(new Note(dto.Title, dto.Description));
 
-    [HttpPut]
-    public void Update(Note note) => _noteRepository.Update(note);
+    [HttpPut("{id}")]
+    public void Update(Guid id,NoteDto dto)
+    {
+        var note = new Note(dto.Title, dto.Description);
+        note.ChangeId(id);
+        _noteRepository.Update(note);
+    }
 
     [HttpDelete("{id}")]
     public void Delete(Guid id) => _noteRepository.Delete(id);
