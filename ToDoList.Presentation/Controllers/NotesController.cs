@@ -18,6 +18,9 @@ public class NotesController : ControllerBase
     [HttpGet]
     public List<Note> Get() => _noteRepository.GetAll();
 
+    [HttpGet("{id}")]
+    public Note? Get(Guid id) => _noteRepository.GetById(id);
+
     [HttpPost]
     public Guid Create(NoteDto dto) => _noteRepository.Create(new Note(dto.Title, dto.Description));
 
