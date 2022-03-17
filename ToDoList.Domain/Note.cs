@@ -11,7 +11,7 @@ public sealed class Note
         Title = title;
         Description = description;
 
-        TitleValidator(); DescriptionValidator();
+        Validator();
 
         Tasks = new List<Task>();
     }
@@ -57,11 +57,14 @@ public sealed class Note
 
         task.ChangeState();
     }
+    public void Validator()
+    {
+        TitleValidator(); DescriptionValidator();
+    }
     public override string ToString()
     {
         return Title;
     }
-
     public override bool Equals(object? obj)
     {
         if (!(obj is Note note))

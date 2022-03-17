@@ -75,4 +75,21 @@ public class NoteRepositoryTests : IClassFixture<NoteFixture>
         // Assert
         _noteRepository.GetById(id).Should().BeNull();
     }
+
+    [Fact]
+    public void Should_Update_Note()
+    {
+        // Arrange
+        var createNote = _noteBuilder.Build();
+        var updateNote = _noteBuilder.WithTitle(nameof(Should_Update_Note)).Build();
+
+        // Act
+        var id = _noteRepository.Create(createNote);
+        updateNote.ChangeId(id);
+        _noteRepository.Update(updateNote);
+        var actual = _noteRepository.GetById(createNote.Id);
+
+        // Assert
+        actual?.Title.Should().Be(updateNote.Title);
+    }
 }

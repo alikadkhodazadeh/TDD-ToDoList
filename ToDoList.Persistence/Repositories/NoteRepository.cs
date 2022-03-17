@@ -47,10 +47,20 @@ public sealed class NoteRepository : INoteRepository
     {
         if(id == Guid.Empty)
             throw new ArgumentNullException(nameof(id));
-        var note = _context.Notes.Find(id);
+        var note = GetById(id);
         if (note is null)
             throw new ArgumentNullException(nameof(note));
         _context.Notes.Remove(note);
+        Save();
+    }
+
+    public void Update(Note note)
+    {
+        note.Validator();
+        var result = GetById(note.Id);
+        if (result is null)
+            throw new ArgumentNullException(nameof(result));
+        result.Edit(note.Title, note.Description);
         Save();
     }
 }

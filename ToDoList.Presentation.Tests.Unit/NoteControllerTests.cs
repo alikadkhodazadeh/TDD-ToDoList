@@ -51,4 +51,10 @@ public class NoteControllerTests
         // Assert
         _noteRepository.Received().Create(note);
     }
+
+    [Fact]
+    public void Should_Update_Note()
+    {
+
+    }
 }
