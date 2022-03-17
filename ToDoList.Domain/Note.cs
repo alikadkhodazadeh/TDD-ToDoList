@@ -4,6 +4,7 @@ public sealed class Note
 {
     public Note()
     {
+        Tasks = new List<Task>();
     }
 
     public Note(string title, string description) :this()
@@ -12,13 +13,11 @@ public sealed class Note
         Description = description;
 
         Validator();
-
-        Tasks = new List<Task>();
     }
 
-    public Guid Id { get; private set; }
-    public string Title { get; private set; }
-    public string Description { get; private set; }
+    public Guid Id { get; set; }
+    public string Title { get; set; }
+    public string Description { get; set; }
     public ICollection<Task> Tasks { get; set; }
 
     public void TitleValidator()

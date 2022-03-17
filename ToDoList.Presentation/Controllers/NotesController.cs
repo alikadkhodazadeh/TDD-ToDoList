@@ -1,4 +1,5 @@
 ﻿using ToDoList.Application;
+using ToDoList.Application.DTOs;
 using ToDoList.Domain;
 
 namespace ToDoList.Presentation.Controllers;
@@ -18,11 +19,11 @@ public class NotesController : ControllerBase
     public List<Note> Get() => _noteRepository.GetAll();
 
     [HttpPost]
-    public void Create(Note note) => _noteRepository.Create(note);
+    public Guid Create(NoteDto dto) => _noteRepository.Create(new Note(dto.Title, dto.Description));
 
     [HttpPut]
     public void Update(Note note) => _noteRepository.Update(note);
 
-    [HttpDelete]
+    [HttpDelete("{id}")]
     public void Delete(Guid id) => _noteRepository.Delete(id);
 }

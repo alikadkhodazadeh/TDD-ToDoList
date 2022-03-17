@@ -9,8 +9,7 @@ public class Program
         #region Services
         var services = builder.Services;
 
-        services.AddContext();
-        services.AddRepositories();
+        services.AddPersistence();
 
         services.AddControllers();
         #endregion

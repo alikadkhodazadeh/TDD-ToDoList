@@ -5,6 +5,11 @@ namespace ToDoList.Persistence;
 
 public static class IocConfig
 {
+    public static void AddPersistence(this IServiceCollection services)
+    {
+        services.AddContext();
+        services.AddRepositories();
+    }
     public static void AddContext(this IServiceCollection services)
     {
         services.AddDbContext<Context>();
