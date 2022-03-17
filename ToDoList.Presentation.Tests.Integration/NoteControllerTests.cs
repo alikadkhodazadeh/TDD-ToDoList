@@ -1,8 +1,4 @@
-﻿using RESTFulSense.Clients;
-using ToDoList.Application.DTOs;
-using ToDoList.Persistence;
-
-namespace ToDoList.Presentation.Tests.Integration;
+﻿namespace ToDoList.Presentation.Tests.Integration;
 
 public class NoteControllerTests
 {

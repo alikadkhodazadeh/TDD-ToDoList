@@ -1,8 +1,4 @@
-﻿using ToDoList.Application;
-using ToDoList.Application.DTOs;
-using ToDoList.Domain;
-
-namespace ToDoList.Presentation.Controllers;
+﻿namespace ToDoList.Presentation.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

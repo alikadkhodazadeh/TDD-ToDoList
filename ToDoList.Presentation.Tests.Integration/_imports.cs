@@ -10,3 +10,5 @@ global using ToDoList.Domain;
 global using ToDoList.Presentation.Controllers;
 global using Microsoft.AspNetCore.Mvc.Testing;
 global using RESTFulSense;
+global using ToDoList.Application.DTOs;
+global using RESTFulSense.Clients;
