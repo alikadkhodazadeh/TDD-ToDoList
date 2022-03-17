@@ -55,6 +55,27 @@ public class NoteControllerTests
     [Fact]
     public void Should_Update_Note()
     {
+        // Arrange
+        var id = Guid.NewGuid();
+        var updateNote = _noteBuilder.WithId(id).Build();
 
+        // Act
+        _notesController.Update(updateNote);
+
+        // Assert
+        _noteRepository.Received().Update(updateNote);
+    }
+
+    [Fact]
+    public void Should_Delete_Note()
+    {
+        // Arrange
+        var id = Guid.NewGuid();
+
+        // Act
+        _notesController.Delete(id);
+
+        // Assert
+        _noteRepository.Received().Delete(id);
     }
 }

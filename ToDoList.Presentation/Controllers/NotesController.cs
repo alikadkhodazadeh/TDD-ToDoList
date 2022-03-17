@@ -19,4 +19,10 @@ public class NotesController : ControllerBase
 
     [HttpPost]
     public void Create(Note note) => _noteRepository.Create(note);
+
+    [HttpPut]
+    public void Update(Note note) => _noteRepository.Update(note);
+
+    [HttpDelete]
+    public void Delete(Guid id) => _noteRepository.Delete(id);
 }
