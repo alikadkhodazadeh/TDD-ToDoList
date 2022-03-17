@@ -7,6 +7,6 @@ public interface INoteRepository : IDisposable
     Guid Create(Note note);
     Note? GetById(Guid id);
     void Delete(Guid id);
-    void Update(Note note);
+    Guid Update(Note note);
     void Save();
 }

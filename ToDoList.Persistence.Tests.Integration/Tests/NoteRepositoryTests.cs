@@ -63,6 +63,22 @@ public class NoteRepositoryTests : IClassFixture<NoteFixture>
     }
 
     [Fact]
+    public void Should_Return_Id_Of_The_Updated_Note()
+    {
+        // Arrange
+        var createNote = _noteBuilder.Build();
+        var updateNote = _noteBuilder.WithTitle(nameof(Should_Return_Id_Of_The_Updated_Note)).Build();
+
+        // Act
+        var newId = _noteRepository.Create(createNote);
+        updateNote.ChangeId(newId);
+        var id = _noteRepository.Update(updateNote);
+
+        // Assert
+        id.Should().NotBeEmpty();
+    }
+
+    [Fact]
     public void Should_Delete_Existing_Note()
     {
         // Arrange

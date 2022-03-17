@@ -54,7 +54,7 @@ public sealed class NoteRepository : INoteRepository
         Save();
     }
 
-    public void Update(Note note)
+    public Guid Update(Note note)
     {
         note.Validator();
         var result = GetById(note.Id);
@@ -62,5 +62,6 @@ public sealed class NoteRepository : INoteRepository
             throw new ArgumentNullException(nameof(result));
         result.Edit(note.Title, note.Description);
         Save();
+        return note.Id;
     }
 }
