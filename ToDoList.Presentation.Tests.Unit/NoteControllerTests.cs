@@ -1,8 +1,4 @@
-﻿using NSubstitute;
-using System.Collections.Generic;
-using ToDoList.Application;
-using ToDoList.Domain;
-using ToDoList.Presentation.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace ToDoList.Presentation.Tests.Unit;
 
@@ -10,10 +6,12 @@ public class NoteControllerTests
 {
     private readonly NotesController _notesController;
     private readonly INoteRepository _noteRepository;
+    private readonly NoteBuilder _noteBuilder;
     public NoteControllerTests()
     {
         _noteRepository = Substitute.For<INoteRepository>();
         _notesController = new NotesController(_noteRepository);
+        _noteBuilder = new NoteBuilder();
     }
 
     [Fact]
@@ -39,5 +37,18 @@ public class NoteControllerTests
 
         // Assert
         notes.Should().BeOfType<List<Note>>();
+    }
+
+    [Fact]
+    public void Should_Create_Note()
+    {
+        // Arrange
+        var note = _noteBuilder.Build();
+
+        // Act
+        _notesController.Create(note);
+
+        // Assert
+        _noteRepository.Received().Create(note);
     }
 }

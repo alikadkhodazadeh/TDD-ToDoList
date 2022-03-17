@@ -16,4 +16,7 @@ public class NotesController : ControllerBase
 
     [HttpGet]
     public List<Note> Get() => _noteRepository.GetAll();
+
+    [HttpPost]
+    public void Create(Note note) => _noteRepository.Create(note);
 }
