@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
-namespace ToDoList.Presentation.Tests.Unit;
+﻿namespace ToDoList.Presentation.Tests.Unit;
 
 public class NoteControllerTests
 {

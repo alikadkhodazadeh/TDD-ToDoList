@@ -1,22 +1,28 @@
 using ToDoList.Persistence;
 
-var builder = WebApplication.CreateBuilder(args);
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-#region Services
-var services = builder.Services;
+        #region Services
+        var services = builder.Services;
 
-services.AddContext();
-services.AddRepositories();
+        services.AddContext();
+        services.AddRepositories();
 
-services.AddControllers();
-#endregion
+        services.AddControllers();
+        #endregion
 
-#region Middleware
-var app = builder.Build();
+        #region Middleware
+        var app = builder.Build();
 
-app.UseRouting();
+        app.UseRouting();
 
-app.MapControllers();
+        app.MapControllers();
 
-app.Run();
-#endregion
+        app.Run();
+        #endregion
+    }
+}
